@@ -24,16 +24,24 @@ export default {
     },
 
     actions: {
-        async getPages({commit},page) {
-            const data = await apiRequest.get(`pages?page=${page}&limit=10`)
+        async getPages({commit},id) {
+            const data = await apiRequest.get(`pages/${id}`)
             commit('SET_PAGES', data.data)
         },
-        async getPage({commit}, id) {
-            const data = await apiRequest.get(`pages/${id}`)
+        async getSlide({commit}, id) {
+            const data = await apiRequest.get(`pages/${id}/slide`)
             commit('SET_PAGE', data.data)
         },
         async updatePageDto({commit},body) {
-            await apiRequest.patch(`pages/update`,JSON.stringify(body))
+            await apiRequest.patch(`slides/update`,JSON.stringify(body))
+            commit('UPDATED_USER')
+        },
+        async savePageDto({commit},body) {
+            await apiRequest.post(`pages/create/slide`,JSON.stringify(body))
+            commit('UPDATED_USER')
+        },
+        async removePageDto({commit},id) {
+            await apiRequest.delete(`slides/delete/${id}`)
             commit('UPDATED_USER')
         }
     }

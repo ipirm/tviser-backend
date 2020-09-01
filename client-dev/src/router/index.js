@@ -2,6 +2,9 @@ import store from '../store'
 
 import VueRouter from 'vue-router'
 import Vue from 'vue'
+import SlidesPage from "../pages/pages/page/slides/SlidesPage";
+import SlideUpdatePage from "../pages/pages/page/slides/slide/SlideUpdatePage";
+import SlideAddPage from "../pages/pages/page/slides/slide/SlideAddPage";
 
 const LoginPage = () => import(/* webpackChunkName: "login" */ '../pages/auth/LoginPage')
 const UserPage = () => import(/* webpackChunkName: "user" */ '../pages/users/UserPage')
@@ -54,7 +57,22 @@ const router = new VueRouter({
             path: '/pages/:id',
             component:PageUpdate,
             beforeEnter: ifAuthenticated,
-        }
+        },
+        {
+            path: '/pages/:id/slides',
+            component: SlidesPage,
+            beforeEnter: ifAuthenticated,
+        },
+        {
+            path: '/pages/:id/slides/:slide_id',
+            component: SlideUpdatePage,
+            beforeEnter: ifAuthenticated,
+        },
+        {
+            path: '/pages/:id/update/:slide_id',
+            component: SlideAddPage,
+            beforeEnter: ifAuthenticated,
+        },
     ]
 })
 

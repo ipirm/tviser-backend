@@ -73,3 +73,34 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
   Nest is [MIT licensed](LICENSE).
+
+About /
+        "meta_title": "Наше портфолио",
+        "meta_title__en": null,
+        "meta_title__de": null,
+        "meta_title__az": null,
+        "meta_subtitle": "Наше портфолио",
+        "meta_subtitle__en": null,
+        "meta_subtitle__de": null,
+        "meta_subtitle__az": null,
+        "meta_keywords": "Наше портфолио",
+        "meta_keywords__en": null,
+        "meta_keywords__de": null,
+        "meta_keywords__az": null,
+        "title": "Наше портфолио",
+        "title__en": null,
+        "title__de": null,
+        "title__az": null,
+        "subtitle": "-",
+        "subtitle__en": null,
+        "subtitle__de": null,
+        "subtitle__az": null,
+        
+        Slide /
+          "title": "Слайд 12",
+                "subtitle": "ааааа",
+                "image_link": "https://sun7-7.userapi.com/impf/c824201/v824201969/17341f/IfCwbiGRL7c.jpg?size=200x0&quality=90&crop=0,0,500,588&sign=9b4d43be2be378401d5bec41a9c5d5b3&ava=1",
+                "image_alt": "fafaf",
+                 "url": "https://chat-vekil.herokuapp.com/partners",
+                 "aboutId": 7
+        

@@ -16,9 +16,8 @@ export class AboutService {
     ) {
     }
 
-    public async getAbout({page, limit}) {
-        const queryBuilder = this.about.createQueryBuilder('c');
-        return paginate<AboutEntity>(queryBuilder, {page, limit});
+    public async getAbouts() {
+        return await this.about.find({relations: ['slides']});
     }
 
     public async createAbout(createAboutDto: CreateAboutDto): Promise<any> {
@@ -36,17 +35,12 @@ export class AboutService {
     }
 
     public async findOne(id: string): Promise<any> {
-        return this.about.findOne(id);
+        return this.about.findOne(id, {relations: ['slides']});
     }
 
     public async createSlide(createSlideDto: CreateSlideDto): Promise<any> {
-         const slide = new CreateSlideDto();
-        await this.slide.save(createSlideDto)
-        // about.slides = []
-      const id = createSlideDto.aboutId;
-        const newPost =  this.slide.create(createSlideDto);
-        await this.slide.save(newPost);
-         return createSlideDto.aboutId
+        await this.slide.save(createSlideDto);
+        return this.slide.find()
     }
 
 
@@ -55,4 +49,11 @@ export class AboutService {
         return paginate<SlideEntity>(queryBuilder, {page, limit});
     }
 
+    public async getSlide(id) {
+        return await this.slide.findOne(id);
+    }
+    public async updateSlide(createSlideDto: CreateSlideDto): Promise<any> {
+        const id = createSlideDto.id;
+        return await this.about.save({...createSlideDto, id});
+    }
 }

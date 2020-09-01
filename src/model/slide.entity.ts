@@ -1,12 +1,14 @@
-import {Entity, Column, ManyToOne} from 'typeorm'
+import {Entity, Column, ManyToOne,JoinColumn} from 'typeorm'
 import {BaseEntity} from "./base.entity";
 import {I18nColumn} from "typeorm-i18n";
 import {DefaultLocale, SupportedLocales} from "../locale/locale";
 import {AboutEntity} from "./about.entity";
+import {options} from "tsconfig-paths/lib/options";
 
-@Entity('slide')
+@Entity('slides')
 
-export abstract class SlideEntity extends BaseEntity {
+
+export  class SlideEntity extends BaseEntity {
     @I18nColumn({
         default_language: DefaultLocale,
         languages: SupportedLocales,
@@ -26,6 +28,17 @@ export abstract class SlideEntity extends BaseEntity {
     @Column({type: 'varchar', length: 1500, nullable: false})
     url: string;
 
-    @ManyToOne(type => AboutEntity, about => about.slides)
-    about: AboutEntity
+    @I18nColumn({
+        default_language: DefaultLocale,
+        languages: SupportedLocales,
+    })
+    @Column({type: 'varchar', length: 1500, nullable: false})
+    type: string;
+
+    @ManyToOne(type => AboutEntity, about => about)
+    @JoinColumn({name: 'aboutId'})
+    public about: AboutEntity;
+
+    @Column()
+    public aboutId: number;
 }

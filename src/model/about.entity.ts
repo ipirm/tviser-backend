@@ -4,9 +4,9 @@ import {I18nColumn} from "typeorm-i18n";
 import {DefaultLocale, SupportedLocales} from "../locale/locale";
 import {SlideEntity} from "./slide.entity";
 
-@Entity('about')
+@Entity('abouts')
 
-export abstract class AboutEntity extends BaseEntity {
+export  class AboutEntity extends BaseEntity {
     @I18nColumn({
         default_language: DefaultLocale,
         languages: SupportedLocales,
@@ -45,9 +45,6 @@ export abstract class AboutEntity extends BaseEntity {
     @Column({type: 'varchar', length: 1500, nullable: false})
     subtitle: string;
 
-    @OneToMany(type => SlideEntity, slide => slide.about,{
-        eager: true,
-        cascade: true
-    })
+    @OneToMany(type => SlideEntity, slide => slide.about,{ cascade: true})
     slides: SlideEntity[];
 }

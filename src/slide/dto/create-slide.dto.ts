@@ -2,6 +2,7 @@ import {ApiProperty} from "@nestjs/swagger";
 import {IsNumber, IsString} from 'class-validator';
 
 export class CreateSlideDto {
+
     @ApiProperty({type: Number, description: "id", required: false})
     @IsNumber()
     readonly id: number;
@@ -48,6 +49,11 @@ export class CreateSlideDto {
     @IsString()
     readonly url: string;
 
+    @ApiProperty({type: String, description: "type", required: true})
+    @IsString()
+    readonly type: string;
+
     @ApiProperty({type: Number, description: "aboutId", required: true})
+    @IsNumber()
     readonly aboutId: number;
 }
