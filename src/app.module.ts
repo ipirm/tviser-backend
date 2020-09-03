@@ -6,12 +6,11 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import {config} from "./orm.config";
 import { AuthModule } from './auth/auth.module';
 import { BannersModule } from './banners/banners.module';
-import { AboutController } from './about/about.controller';
-import { AboutService } from './about/about.service';
 import { AboutModule } from './about/about.module';
-import { ServeStaticModule} from '@nestjs/serve-static'; // New
-import { join } from 'path'; // New
+import { ServeStaticModule} from '@nestjs/serve-static';
+import { join } from 'path';
 import { SlideModule } from './slide/slide.module';
+import { InformationModule } from './information/information.module';
 
 @Module({
     imports: [
@@ -25,6 +24,7 @@ import { SlideModule } from './slide/slide.module';
             exclude: ['/api*'],
         }),
         SlideModule,
+        InformationModule,
     ],
     controllers: [AppController],
     providers: [AppService],

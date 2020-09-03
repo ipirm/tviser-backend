@@ -3,7 +3,6 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {AboutEntity} from "../model/about.entity";
 import {AboutService} from "./about.service";
 import {AboutController} from "./about.controller";
-import {SlideService} from "../slide/slide.service";
 import {SlideEntity} from "../model/slide.entity";
 
 @Module({
