@@ -5,6 +5,8 @@ import Vue from 'vue'
 import SlidesPage from "../pages/pages/page/slides/SlidesPage";
 import SlideUpdatePage from "../pages/pages/page/slides/slide/SlideUpdatePage";
 import SlideAddPage from "../pages/pages/page/slides/slide/SlideAddPage";
+import InformationPage from "../pages/pages/information/InformationPage";
+import UpdateInformation from "../pages/pages/information/update/UpdateInformation";
 
 const LoginPage = () => import(/* webpackChunkName: "login" */ '../pages/auth/LoginPage')
 const UserPage = () => import(/* webpackChunkName: "user" */ '../pages/users/UserPage')
@@ -71,6 +73,16 @@ const router = new VueRouter({
         {
             path: '/pages/:id/update/:slide_id',
             component: SlideAddPage,
+            beforeEnter: ifAuthenticated,
+        },
+        {
+            path: '/information',
+            component: InformationPage,
+            beforeEnter: ifAuthenticated,
+        },
+        {
+            path: '/information/:id',
+            component: UpdateInformation,
             beforeEnter: ifAuthenticated,
         },
     ]

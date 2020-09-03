@@ -29,6 +29,12 @@
                         <span class="md-list-item-text">Страницы</span>
                     </router-link>
                 </md-list-item>
+                <md-list-item>
+                    <router-link class="sidebar-link" to="/information">
+                        <md-icon>bookmark_border</md-icon>
+                        <span class="md-list-item-text">Информация</span>
+                    </router-link>
+                </md-list-item>
             </md-list>
         </md-drawer>
         <md-content>
@@ -69,7 +75,6 @@
     }
     .page-container {
         min-height: 300px;
-        overflow: hidden;
         position: relative;
         border: 1px solid rgba(#000, .12);
         height: 100vh;
