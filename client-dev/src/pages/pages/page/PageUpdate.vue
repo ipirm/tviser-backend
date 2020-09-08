@@ -52,7 +52,7 @@
             </md-field>
             <md-field v-if="lang === 2">
                 <label>Meta Keywords</label>
-                <md-input v-model="pageItem.meta_subtitle__en"></md-input>
+                <md-input v-model="pageItem.meta_keywords__en"></md-input>
             </md-field>
             <md-field v-if="lang === 3">
                 <label>Meta Keywords</label>
