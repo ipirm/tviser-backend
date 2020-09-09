@@ -11,6 +11,11 @@ import { ServeStaticModule} from '@nestjs/serve-static';
 import { join } from 'path';
 import { SlideModule } from './slide/slide.module';
 import { InformationModule } from './information/information.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
+import { MailService } from './mail/mail.service';
+import { MailController } from './mail/mail.controller';
+import { MailModule } from './mail/mail.module';
 
 @Module({
     imports: [
@@ -19,15 +24,29 @@ import { InformationModule } from './information/information.module';
         AuthModule,
         BannersModule,
         AboutModule,
+        MailerModule.forRoot({
+            transport: 'smtps://info@tviser.agency:2587889e@smtp.yandex.ru',
+            defaults: {
+                from:'"nest-modules" <modules@nestjs.com>',
+            },
+            template: {
+                dir: __dirname + '/templates',
+                adapter: new HandlebarsAdapter(),
+                options: {
+                    strict: true,
+                },
+            },
+        }),
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '..', 'client'),
             exclude: ['/api*'],
         }),
         SlideModule,
         InformationModule,
+        MailModule,
     ],
-    controllers: [AppController],
-    providers: [AppService],
+    controllers: [AppController, MailController],
+    providers: [AppService, MailService],
 })
 export class AppModule {
 }
