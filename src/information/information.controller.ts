@@ -1,16 +1,12 @@
-import {Controller, Get, HttpException, HttpStatus, Patch, Post, Request} from '@nestjs/common';
+import {Controller, Get, Patch, Post, Request} from '@nestjs/common';
 import {InformationService} from "./information.service";
 
 @Controller('information')
 export class InformationController {
     constructor(private informationService: InformationService) { }
     @Get()
-    async getAInformation(@Request() req): Promise<any> {
-        if (req.header('Content-Type')=== 'application/json'){
-            return await this.informationService.getInformation();
-        } else {
-            throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
-        }
+    async getAInformation(): Promise<any> {
+        return await this.informationService.getInformation();
     }
     @Post('create')
     async createAbout(@Request() req) {
