@@ -6,7 +6,7 @@ export class InformationController {
     constructor(private informationService: InformationService) { }
     @Get()
     async getAInformation(@Request() req): Promise<any> {
-        if (req.is('json')) {
+        if (req.header('Content-Type')=== 'application/json'){
             return await this.informationService.getInformation();
         } else {
             throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);

@@ -24,7 +24,7 @@ export class UsersController {
         @Query('page') page: number = 1,
         @Query('limit') limit: number = 10
     ): Promise<any> {
-        if (req.is('json')) {
+        if (req.header('Content-Type')=== 'application/json'){
             limit = limit > 100 ? 100 : limit;
             return this.usersService.getUsers({
                 page,
@@ -42,7 +42,7 @@ export class UsersController {
 
     @Get(':id')
     async getUser(@Request() req,@Param('id') id) {
-        if (req.is('json')) {
+        if (req.header('Content-Type')=== 'application/json'){
             const user = await this.usersService.findOne(id);
             return user;
         }else{

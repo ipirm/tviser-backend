@@ -8,7 +8,7 @@ export class AboutController {
 
     @Get()
     async getAbouts(@Request() req): Promise<any> {
-        if (req.is('json')) {
+        if (req.header('Content-Type')=== 'application/json'){
             return await this.aboutService.getAbouts();
         } else {
             throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
@@ -22,7 +22,7 @@ export class AboutController {
 
     @Get(':id')
     async getUser(@Request() req, @Param('id') id) {
-        if (req.is('json')) {
+        if (req.header('Content-Type')=== 'application/json'){
             return await this.aboutService.findOne(id);
         } else {
             throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
@@ -50,7 +50,7 @@ export class AboutController {
         @Query('page') page: number = 1,
         @Query('limit') limit: number = 10
     ): Promise<any> {
-        if (req.is('json')) {
+        if (req.header('Content-Type')=== 'application/json'){
             limit = limit > 100 ? 100 : limit;
             return this.aboutService.getSlides({
                 page,
@@ -63,7 +63,7 @@ export class AboutController {
 
     @Get(':id/slide')
     async getSlides(@Request() req, @Param('id') id) {
-        if (req.is('json')) {
+        if (req.header('Content-Type')=== 'application/json'){
             return await this.aboutService.getSlide(id);
         } else {
             throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);

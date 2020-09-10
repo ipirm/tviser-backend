@@ -6,7 +6,7 @@ export class BannersController {
     constructor(private bannersService: BannersService) { }
     @Get()
     async getBanners(@Request() req) {
-        if (req.is('json')) {
+        if (req.header('Content-Type')=== 'application/json'){
             const banners = await this.bannersService.getBanners();
             return banners;
         } else {
