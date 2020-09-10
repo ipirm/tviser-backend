@@ -1,13 +1,17 @@
-import {Controller, Get, Post, Request} from '@nestjs/common';
+import {Controller, Get, HttpException, HttpStatus, Post, Request} from '@nestjs/common';
 import {BannersService} from "./banners.service";
 
 @Controller('banners')
 export class BannersController {
     constructor(private bannersService: BannersService) { }
     @Get()
-    async getBanners() {
-        const banners = await this.bannersService.getBanners();
-        return banners;
+    async getBanners(@Request() req) {
+        if (req.is('json')) {
+            const banners = await this.bannersService.getBanners();
+            return banners;
+        } else {
+            throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+        }
     }
     @Post('create')
     async createBanner(@Request() req) {

@@ -1,13 +1,18 @@
-import {Controller, Get, Post, Request, Delete, Param, Patch, Query} from '@nestjs/common';
+import {Controller, Get, Post, Request, Delete, Param, Patch, Query, HttpException, HttpStatus} from '@nestjs/common';
 import {AboutService} from "./about.service";
 
 @Controller('pages')
 export class AboutController {
-    constructor(private aboutService: AboutService) { }
+    constructor(private aboutService: AboutService) {
+    }
 
     @Get()
-    async getAbouts(): Promise<any> {
-        return await this.aboutService.getAbouts();
+    async getAbouts(@Request() req): Promise<any> {
+        if (req.is('json')) {
+            return await this.aboutService.getAbouts();
+        } else {
+            throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+        }
     }
 
     @Post('create')
@@ -16,8 +21,12 @@ export class AboutController {
     }
 
     @Get(':id')
-    async getUser(@Param('id') id) {
-        return  await this.aboutService.findOne(id);
+    async getUser(@Request() req, @Param('id') id) {
+        if (req.is('json')) {
+            return await this.aboutService.findOne(id);
+        } else {
+            throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+        }
     }
 
     @Delete('delete/:id')
@@ -37,17 +46,27 @@ export class AboutController {
 
     @Get('slides/data')
     async getSlide(
+        @Request() req,
         @Query('page') page: number = 1,
         @Query('limit') limit: number = 10
     ): Promise<any> {
-        limit = limit > 100 ? 100 : limit;
-        return this.aboutService.getSlides({
-            page,
-            limit
-        });
+        if (req.is('json')) {
+            limit = limit > 100 ? 100 : limit;
+            return this.aboutService.getSlides({
+                page,
+                limit
+            });
+        } else {
+            throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+        }
     }
+
     @Get(':id/slide')
-    async getSlides(@Param('id') id) {
-        return  await this.aboutService.getSlide(id);
+    async getSlides(@Request() req, @Param('id') id) {
+        if (req.is('json')) {
+            return await this.aboutService.getSlide(id);
+        } else {
+            throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+        }
     }
 }

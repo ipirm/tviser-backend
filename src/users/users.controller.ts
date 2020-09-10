@@ -1,8 +1,16 @@
-import {Controller, Get, Param, Post, Body, Query, Delete, Request, Patch} from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Param,
+    Post,
+    Query,
+    Delete,
+    Request,
+    Patch,
+    HttpException,
+    HttpStatus
+} from '@nestjs/common';
 import {UsersService} from './users.service';
-import {CreateUserDTO} from './dto/create-user.dto';
-import {Pagination} from 'nestjs-typeorm-paginate';
-import {UsersEntity} from "../model/users.entity";
 
 @Controller('users')
 export class UsersController {
@@ -12,14 +20,19 @@ export class UsersController {
 
     @Get()
     async getUsers(
+        @Request() req,
         @Query('page') page: number = 1,
         @Query('limit') limit: number = 10
     ): Promise<any> {
-        limit = limit > 100 ? 100 : limit;
-        return this.usersService.getUsers({
-            page,
-            limit
-        });
+        if (req.is('json')) {
+            limit = limit > 100 ? 100 : limit;
+            return this.usersService.getUsers({
+                page,
+                limit
+            });
+        } else {
+            throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+        }
     }
 
     @Post('create')
@@ -28,9 +41,13 @@ export class UsersController {
     }
 
     @Get(':id')
-    async getUser(@Param('id') id) {
-        const user = await this.usersService.findOne(id);
-        return user;
+    async getUser(@Request() req,@Param('id') id) {
+        if (req.is('json')) {
+            const user = await this.usersService.findOne(id);
+            return user;
+        }else{
+            throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+        }
     }
 
     @Patch('update')
