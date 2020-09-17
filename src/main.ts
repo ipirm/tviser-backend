@@ -15,7 +15,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   app.enableCors({
-    origin: ['http://localhost:3000','http://localhost:8080','https://chat-vekil.herokuapp.com','https://tviser.agency','https://tviser-backend.herokuapp.com'],
+    origin: ['http://localhost:3000','http://localhost:8080','https://chat-vekil.herokuapp.com','https://www.tviser.agency','https://tviser-backend.herokuapp.com'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Accept',
     credentials: true,
