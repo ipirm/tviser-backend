@@ -1,4 +1,4 @@
-import {Controller, Get, Param, Post, Body, Query, Delete, Request, Patch} from '@nestjs/common';
+import {Controller, Get, Param,Header, Post, Body, Query, Delete, Request, Patch} from '@nestjs/common';
 import {UsersService} from './users.service';
 import {CreateUserDTO} from './dto/create-user.dto';
 import {Pagination} from 'nestjs-typeorm-paginate';
@@ -12,6 +12,7 @@ export class UsersController {
 
     @Get()
     async getUsers(
+        @Request() req,
         @Query('page') page: number = 1,
         @Query('limit') limit: number = 10
     ): Promise<any> {
