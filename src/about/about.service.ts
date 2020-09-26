@@ -17,7 +17,10 @@ export class AboutService {
     }
 
     public async getAbouts() {
-        return await this.about.find({relations: ['slides']});
+        return await this.about.createQueryBuilder("about")
+            .leftJoinAndSelect("about.slides", "slide")
+            .orderBy("slide.id", "ASC")
+            .getMany();
     }
 
     public async createAbout(createAboutDto: CreateAboutDto): Promise<any> {
@@ -35,7 +38,11 @@ export class AboutService {
     }
 
     public async findOne(id: string): Promise<any> {
-        return this.about.findOne(id, {relations: ['slides']});
+        return await this.about.createQueryBuilder("about")
+            .leftJoinAndSelect("about.slides", "slide")
+            .where("about.id = :id", { id: id })
+            .orderBy("slide.id", "ASC")
+            .getMany();
     }
 
     public async createSlide(createSlideDto: CreateSlideDto): Promise<any> {
@@ -45,13 +52,15 @@ export class AboutService {
 
 
     public async getSlides({page, limit}) {
-        const queryBuilder = this.slide.createQueryBuilder('c');
+        const queryBuilder = this.slide.createQueryBuilder('c')
+            .orderBy("id", "ASC");
         return paginate<SlideEntity>(queryBuilder, {page, limit});
     }
 
     public async getSlide(id) {
         return await this.slide.findOne(id);
     }
+
     public async updateSlide(createSlideDto: CreateSlideDto): Promise<any> {
         const id = createSlideDto.id;
         return await this.about.save({...createSlideDto, id});
