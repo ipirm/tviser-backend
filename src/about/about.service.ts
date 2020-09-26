@@ -42,7 +42,7 @@ export class AboutService {
             .leftJoinAndSelect("about.slides", "slide")
             .where("about.id = :id", { id: id })
             .orderBy("slide.id", "ASC")
-            .getMany();
+            .getOne();
     }
 
     public async createSlide(createSlideDto: CreateSlideDto): Promise<any> {
