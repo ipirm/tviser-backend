@@ -6,7 +6,7 @@ export class AboutController {
     constructor(private aboutService: AboutService) { }
 
     @Get()
-    async getAbouts(): Promise<any> {
+    async getAbouts(@Request() req): Promise<any> {
         return await this.aboutService.getAbouts();
     }
 
