@@ -27,7 +27,7 @@ export class SlideEntity extends BaseEntity {
     image_alt: string;
     @Column({type: 'varchar', length: 1500, nullable: false})
     url: string;
-    @Column({type: 'varchar', length: 1500, nullable: false})
+    @Column({type: 'varchar', length: 1500, nullable: true})
     fancy_image: string;
 
     @I18nColumn({
