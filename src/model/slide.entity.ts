@@ -1,4 +1,4 @@
-import {Entity, Column, ManyToOne,JoinColumn} from 'typeorm'
+import {Entity, Column, ManyToOne, JoinColumn} from 'typeorm'
 import {BaseEntity} from "./base.entity";
 import {I18nColumn} from "typeorm-i18n";
 import {DefaultLocale, SupportedLocales} from "../locale/locale";
@@ -8,7 +8,7 @@ import {options} from "tsconfig-paths/lib/options";
 @Entity('slides')
 
 
-export  class SlideEntity extends BaseEntity {
+export class SlideEntity extends BaseEntity {
     @I18nColumn({
         default_language: DefaultLocale,
         languages: SupportedLocales,
@@ -27,6 +27,8 @@ export  class SlideEntity extends BaseEntity {
     image_alt: string;
     @Column({type: 'varchar', length: 1500, nullable: false})
     url: string;
+    @Column({type: 'varchar', length: 1500, nullable: false})
+    fancy_image: string;
 
     @I18nColumn({
         default_language: DefaultLocale,

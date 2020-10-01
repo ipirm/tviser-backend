@@ -98,6 +98,7 @@
                 <label>Subtitle </label>
                 <md-input v-model="pageItem.subtitle__az"></md-input>
             </md-field>
+
             <div>
                 <md-button @click.stop="$router.go(-1)">Назад</md-button>
                 <md-button class="md-primary" type="submit">Сохранить</md-button>

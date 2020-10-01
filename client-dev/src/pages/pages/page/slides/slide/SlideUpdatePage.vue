@@ -72,6 +72,12 @@
                 <label>Ссылка</label>
                 <md-input v-model="pageItem.url"></md-input>
             </md-field>
+
+            <md-field>
+                <label>Большая картинка сайта</label>
+                <md-input v-model="pageItem.fancy_image"></md-input>
+            </md-field>
+
             <div>
                 <md-button @click.stop="$router.go(-1)">Назад</md-button>
                 <md-button class="md-primary" type="submit">Сохранить</md-button>
@@ -90,18 +96,18 @@
             this.getSlide(this.$route.params.slide_id)
         },
         name: "SlideUpdatePage",
-        data(){
+        data() {
             return {
                 lang: 1
             }
         },
         methods: {
             ...mapActions('slides', ['getSlide', 'updatePageDto']),
-            changeLang(item){
+            changeLang(item) {
                 this.lang = item
             },
             updateUser() {
-                this.updatePageDto(this.pageItem).then(()=>this.$router.go(-1));
+                this.updatePageDto(this.pageItem).then(() => this.$router.go(-1));
             }
         },
         computed: {
@@ -116,7 +122,8 @@
         margin: auto;
         margin-top: 50px;
     }
-    .form-title{
+
+    .form-title {
         font-size: 20px;
         text-align: center;
         margin: 50px 0;

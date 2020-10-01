@@ -73,6 +73,10 @@
                 <md-input v-model="pageItem.url"></md-input>
             </md-field>
             <md-field>
+                <label>Большая картинка сайта</label>
+                <md-input v-model="pageItem.fancy_image"></md-input>
+            </md-field>
+            <md-field>
                 <label>Айди</label>
                 <md-input readonly v-model="pageItem.aboutId"></md-input>
             </md-field>
