@@ -2,24 +2,14 @@ import {TypeOrmModuleOptions} from "@nestjs/typeorm";
 
 export const config: TypeOrmModuleOptions = {
 
-    // type: "postgres",
-    // host: "localhost",
-    // port: 5432,
-    // username: 'postgres',
-    // password: "root",
-    // database: "tviser",
-    // entities: ["dist/**/*.entity.js"],
-    // synchronize: true,
-    // logging: true
-
 
     type: 'postgres',
-    host: 'c2-52-31-233-101.eu-west-1.compute.amazonaws.com',
-    url: 'postgres://ivmuqrqxxukqkw:962336f9063cd90498b82c1c3711c35ba6a818143bf5d2a150d68e0b71ca1652@ec2-52-31-233-101.eu-west-1.compute.amazonaws.com:5432/dcfmg399n4enmu',
+    host: 'ec2-3-234-85-177.compute-1.amazonaws.com',
+    url: 'postgres://bgqmoifjxgcmzy:8ec3522380fa45ee727991ba5d0cfcb84891b0304eb3323a443f363d20af907e@ec2-3-234-85-177.compute-1.amazonaws.com:5432/d9ahl8ru0grqi3',
     port: 5432,
-    username: 'ivmuqrqxxukqkw',
-    password: '962336f9063cd90498b82c1c3711c35ba6a818143bf5d2a150d68e0b71ca1652',
-    database: 'dcfmg399n4enmu',
+    username: 'bgqmoifjxgcmzy',
+    password: '8ec3522380fa45ee727991ba5d0cfcb84891b0304eb3323a443f363d20af907e',
+    database: 'd9ahl8ru0grqi3',
     entities: ['dist/**/*.entity.js'],
     synchronize: true,
     logging: true

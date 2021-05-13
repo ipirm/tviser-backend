@@ -14,10 +14,7 @@ async function bootstrap() {
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);
 
-    await app.enableCors({
-        origin: ['http://localhost:8080','https://www.tviser.agency','http://localhost:3000','https://tviser.agency','https://chat-vekil.herokuapp.com'],
-        credentials: true
-        });
+    await app.enableCors();
     await app.listen(process.env.PORT || 3000);
 }
 
