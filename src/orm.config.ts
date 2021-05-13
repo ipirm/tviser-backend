@@ -1,15 +1,13 @@
 import {TypeOrmModuleOptions} from "@nestjs/typeorm";
 
 export const config: TypeOrmModuleOptions = {
-
-
     type: 'postgres',
-    host: 'ec2-3-234-85-177.compute-1.amazonaws.com',
-    url: 'postgres://bgqmoifjxgcmzy:8ec3522380fa45ee727991ba5d0cfcb84891b0304eb3323a443f363d20af907e@ec2-3-234-85-177.compute-1.amazonaws.com:5432/d9ahl8ru0grqi3',
+    host: process.env.POSTGRES_HOST,
+    url: process.env.POSTGRES_URL,
     port: 5432,
-    username: 'bgqmoifjxgcmzy',
-    password: '8ec3522380fa45ee727991ba5d0cfcb84891b0304eb3323a443f363d20af907e',
-    database: 'd9ahl8ru0grqi3',
+    username: process.env.POSTGRES_USERNAME,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
     entities: ['dist/**/*.entity.js'],
     synchronize: true,
     logging: true
